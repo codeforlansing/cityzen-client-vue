@@ -1,23 +1,17 @@
 <template>
   <v-app>
     <v-content>
-      <Test/>
+      <Home/>
     </v-content>
   </v-app>
 </template>
 
 <script>
-import Test from './components/Test';
 
+import Home from './components/Home'
 export default {
-  name: 'App',
-
-  components: {
-    Test,
-  },
-
-  data: () => ({
-    //
-  }),
-};
+      components: {
+        'Home': Home
+    }
+}
 </script>
