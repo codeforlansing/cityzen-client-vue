@@ -1,25 +1,52 @@
 <template>
-  <v-container width="100%" class="d-flex pa-6">
-    <v-row class="d-flex">
-      <v-col class="col-xs12">
+  <v-container width="100%" class="mb-12">
+    <v-row :class="mb-12">
+      <v-col :class="mb-12">
         <v-card>
-          <v-card-text>Select one or more areas which you would like to volunteer</v-card-text>
-          <v-treeview selectable selected-color="red" :items="items"></v-treeview>
+          <v-img height="100" :aspect-ratio="16/9" src="..\..\..\src\assets\1A5A6F60-8768-49A6-9CBA-B6E973438DB9.jpeg" />
         </v-card>
       </v-col>
-      <v-col class="col-xs12">
-        <v-card >
+    </v-row>
+    <v-row :class="mb-12">
+      <v-col :class="xs-12">
+        <v-card>
+          <v-card-text>Select one or more areas which you would like to volunteer</v-card-text>
+          <v-treeview
+            v-model="tree"
+            selectable
+            selected-color="green"
+            :items="items"
+            item-key="name"
+            @update:select:="updatetree"
+          />
+        </v-card>
+      </v-col>
+      <v-col :class="xs-12">
+        <v-card>
           <div>
             <h1 class="pl-6 pt-3">Volunteer</h1>
           </div>
           <v-col>
-            <v-text-field value placeholder="Enter Full Name Here" label="Full Name" filled></v-text-field>
-          </v-col>
-          <v-col>
-            <v-text-field value placeholder="fledgevolunteer@thefledge.com" label="Email" filled></v-text-field>
+            <v-text-field
+              v-model="form.name"
+              value
+              placeholder="Enter Full Name Here"
+              label="*Full Name"
+              filled
+            ></v-text-field>
           </v-col>
           <v-col>
             <v-text-field
+              v-model="form.email"
+              value
+              placeholder="fledgevolunteer@thefledge.com"
+              label="*Email"
+              filled
+            ></v-text-field>
+          </v-col>
+          <v-col>
+            <v-text-field
+              v-model="form.notes"
               value
               placeholder="Any Additional Notes for the Organizer"
               label="Notes"
@@ -28,7 +55,11 @@
           </v-col>
           <v-col>
             <div>
-              <v-btn large color="primary">Sign-Up!</v-btn>
+              <div
+                v-if="!cansubmit()"
+              >Fill in the form and Select at least one Volunteering Opportunity</div>
+              <div v-else>Ready to submit</div>
+              <v-btn :disabled="!cansubmit()" large color="primary" v-on:click="submit">Sign-Up!</v-btn>
             </div>
           </v-col>
         </v-card>
@@ -38,28 +69,81 @@
 </template>
 
 <script>
+import Vue from "vue";
+import VueResource from "vue-resource";
+
+Vue.use(VueResource);
+
+function fakeItems() {
+  return [
+    {
+      id: 1,
+      name: "Voluneteer 1",
+      children: [
+        {
+          id: 1.1,
+          name: "Volunteer 1.1"
+        },
+        {
+          id: 1.2,
+          name: "Volunteer 1.2"
+        }
+      ]
+    },
+    {
+      id: 2,
+      name: "Voluneteer 2"
+    },
+    {
+      id: 3,
+      name: "Voluneteer 3"
+    }
+  ];
+}
+
 export default {
   data: () => ({
-    items: [
-      {
-        id: 1,
-        name: "Activism :",
-        children: [
-          { id: 2, name: "Leader" },
-          { id: 3, name: "Organizer" },
-          { id: 4, name: "Outreach" }
-        ]
+    items: [],
+    tree: [],
+    form: {
+      name: "",
+      email: "",
+      notes: "",
+      selected: ""
+    }
+  }),
+  methods: {
+    cansubmit: function() {
+      return (
+        this.form.name !== "" &&
+        this.form.email !== "" &&
+        this.tree !== null &&
+        this.tree.length > 0
+      );
+    },
+    submit: function() {
+      alert(this.form.name + " Applied to volunteer " + this.tree);
+    },
+    updatetree: function() {
+      alert(this.active);
+    }
+  },
+  mounted() {
+    this.$http.get("http://localhost:3000").then(
+      () => {
+        this.items = fakeItems();
       },
-      {
-        id: 5,
-        name: "Maintenence :",
-        children: [
-          { id: 6, name: "Electrical" },
-          { id: 7, name: "Plumbing" },
-          { id: 8, name: "Construction" }
-        ]
+      () => {
+        this.items = fakeItems();
       }
-    ]
-  })
+    );
+  },
+  computed: {
+    filter() {
+      return this.caseSensitive
+        ? (item, search, textKey) => item[textKey].indexOf(search) > -1
+        : undefined;
+    }
+  }
 };
 </script>
