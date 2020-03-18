@@ -1,7 +1,7 @@
 <template>
   <v-app>
     <v-content>
-      <Home/>
+      <Home />
     </v-content>
   </v-app>
 </template>
@@ -10,10 +10,10 @@
 
 import Home from './components/Home'
 export default {
-      components: {
-        'Home': Home
-    },
-    created () {
-    }
+  components: {
+    Home: Home
+  },
+  created () {
+  }
 }
 </script>
