@@ -24,7 +24,7 @@
             selected-color="green"
             :items="items"
             item-key="name"
-            @update:select:="updatetree"
+            @update:select:="updateTree"
           />
         </v-card>
       </v-col>
@@ -65,7 +65,7 @@
           <v-col>
             <div>
               <div
-                v-if="!cansubmit()"
+                v-if="!canSubmit()"
               >
                 Fill in the form and Select at least one Volunteering Opportunity
               </div>
@@ -73,7 +73,7 @@
                 Ready to submit
               </div>
               <v-btn
-                :disabled="!cansubmit()"
+                :disabled="!canSubmit()"
                 large
                 color="primary"
                 @click="submit"
@@ -150,7 +150,7 @@ export default {
     )
   },
   methods: {
-    cansubmit: function () {
+    canSubmit: function () {
       return (
         this.form.name !== '' &&
         this.form.email !== '' &&
@@ -159,10 +159,10 @@ export default {
       )
     },
     submit: function () {
-      alert(this.form.name + ' Applied to volunteer ' + this.tree)
+      window.alert(this.form.name + ' Applied to volunteer ' + this.tree)
     },
-    updatetree: function () {
-      alert(this.active)
+    updateTree: function () {
+      window.alert(this.active)
     }
   }
 }
