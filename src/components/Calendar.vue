@@ -9,7 +9,7 @@
           :events="events"
           color="primary"
           type="month"
-        ></v-calendar>
+        />
       </v-sheet>
     </v-col>
   </v-row>
@@ -17,6 +17,6 @@
 
 <script>
 export default {
-    
+
 }
 </script>
