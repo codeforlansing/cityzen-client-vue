@@ -41,8 +41,8 @@
         </v-list-item-group>
       </v-list>
     </v-navigation-drawer>
-    <router-view v-bind:getTaskPath="getTaskPath"/>
-        <v-footer
+    <router-view :task-path="taskPath" />
+    <v-footer
       color="deep-orange"
       app
     >
@@ -54,12 +54,16 @@
 <script>
 
 export default {
-    props: ['getTaskPath'],
-    data() {
-        return {
-            drawer: false,
-            group: null,
-        }
+  props: {
+    taskPath: {
+      type: String,
+      required: true
+    }
+  },
+  data () {
+    return {
+      drawer: false,
+      group: null
     }
   }
 }

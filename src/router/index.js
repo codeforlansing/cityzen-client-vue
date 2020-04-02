@@ -10,7 +10,7 @@ const routes = [
     path: '/Look1',
     name: 'Look1',
     component: Look1,
-    props: { path: "prop" }
+    props: { path: 'prop' }
   },
   {
     path: '/Look2',

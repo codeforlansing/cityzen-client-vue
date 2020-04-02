@@ -1,25 +1,26 @@
 <template>
   <v-app>
     <v-content>
-      <Home v-bind:getTaskPath="getTaskPath" />
+      <Home :task-path="taskPath" />
     </v-content>
   </v-app>
 </template>
 
 <script>
-import Home from "./components/Home";
+import Home from './components/Home'
 import config from '../public/config'
 
 export default {
-  data() { return {
-      getTaskPath : "",
-    }
-  },
   components: {
     Home: Home
   },
-  created() {
-    this.getTaskPath = config.getTaskPath;
+  data () {
+    return {
+      taskPath: ''
+    }
+  },
+  created () {
+    this.taskPath = config.taskPath
   }
-};
+}
 </script>

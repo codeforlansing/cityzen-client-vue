@@ -123,10 +123,10 @@ function fakeItems () {
 
 export default {
   props: {
-    getTaskPath: {
+    taskPath: {
       type: String,
       required: true
-      }
+    }
   },
   data: () => ({
     items: [],
@@ -145,8 +145,8 @@ export default {
         : undefined
     }
   },
-  mounted() {
-    this.$http.get(this.getTaskPath).then(
+  mounted () {
+    this.$http.get(this.taskPath).then(
       () => {
         this.items = fakeItems()
       },
