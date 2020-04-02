@@ -16,11 +16,8 @@ export default {
   },
   data () {
     return {
-      taskPath: ''
+      taskPath: config.taskPath
     }
-  },
-  created () {
-    this.taskPath = config.taskPath
   }
 }
 </script>
