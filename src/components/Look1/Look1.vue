@@ -122,6 +122,12 @@ function fakeItems () {
 }
 
 export default {
+  props: {
+    taskPath: {
+      type: String,
+      required: true
+    }
+  },
   data: () => ({
     items: [],
     tree: [],
@@ -140,7 +146,7 @@ export default {
     }
   },
   mounted () {
-    this.$http.get('http://localhost:3000').then(
+    this.$http.get(this.taskPath).then(
       () => {
         this.items = fakeItems()
       },

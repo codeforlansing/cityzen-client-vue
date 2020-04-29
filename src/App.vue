@@ -1,19 +1,23 @@
 <template>
   <v-app>
     <v-content>
-      <Home />
+      <Home :task-path="taskPath" />
     </v-content>
   </v-app>
 </template>
 
 <script>
-
 import Home from './components/Home'
+import config from '../public/config'
+
 export default {
   components: {
     Home: Home
   },
-  created () {
+  data () {
+    return {
+      taskPath: config.taskPath
+    }
   }
 }
 </script>
