@@ -1,6 +1,6 @@
 <template>
   <div id="cfl-volunteer-tasks" class="cfl-volunteer-tasks">
-    <TaskList msg="Welcome to the Volunteer Tasks!"/>
+    <TaskList :tasks="tasks" />
   </div>
 </template>
 
@@ -12,6 +12,16 @@ export default Vue.extend({
   name: 'VolunteerTasks',
   components: {
     TaskList
+  },
+  data () {
+    return {
+      tasks: [{
+        taskId: '12345',
+        name: 'todo',
+        description: 'longer explanation of thing',
+        status: 'todo'
+      }]
+    }
   }
 })
 </script>
