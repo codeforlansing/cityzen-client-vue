@@ -1,12 +1,19 @@
 import { shallowMount } from '@vue/test-utils'
 import TaskList from '@/components/TaskList.vue'
+import { Task } from '@types'
 
 describe('TaskList.vue', () => {
-  it('renders props.msg when passed', () => {
-    const msg = 'new message'
+  it('renders task name when passed', () => {
+    const task: Task = {
+      taskId: '12345',
+      name: 'todo',
+      description: 'longer explanation of thing',
+      status: 'todo'
+    }
+    const tasks = [task]
     const wrapper = shallowMount(TaskList, {
-      propsData: { msg }
+      propsData: { tasks }
     })
-    expect(wrapper.text()).toMatch(msg)
+    expect(wrapper.text()).toContain(task.name)
   })
 })
