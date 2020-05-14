@@ -1,5 +1,5 @@
 <template>
-  <div id="volunteer-tasks">
+  <div id="cfl-volunteer-tasks" class="cfl-volunteer-tasks">
     <TaskList msg="Welcome to the Volunteer Tasks!"/>
   </div>
 </template>
@@ -17,7 +17,7 @@ export default Vue.extend({
 </script>
 
 <style>
-#volunteer-tasks {
+.cfl-volunteer-tasks {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
