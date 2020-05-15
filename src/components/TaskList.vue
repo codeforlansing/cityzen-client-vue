@@ -3,15 +3,15 @@
     <legend>Volunteer Opportunities</legend>
     <ul>
       <li v-for="task in tasks" :key="task.taskId">
-        <div>
+        <label :for="task.taskId">
           <input
             type="checkbox"
             :id="task.taskId"
             :value="task.taskId"
             v-model="checkedTaskIds"
           >
-          <label :for="task.taskId">{{ task.name }}</label>
-        </div>
+          {{ task.name }}
+        </label>
       </li>
     </ul>
   </fieldset>
@@ -46,9 +46,10 @@ export default Vue.extend({
 
 .cfl-task-list > ul > li {
   display: inline-block;
+  width: 100%;
 }
 
-.cfl-task-list > ul > li > div {
+.cfl-task-list > ul > li > label {
   display: flex;
   align-items: flex-start;
 }
