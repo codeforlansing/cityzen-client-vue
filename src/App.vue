@@ -1,7 +1,11 @@
 <template>
-  <div id="cfl-volunteer-tasks" class="cfl-volunteer-tasks">
-    <TaskList :tasks="tasks" />
-  </div>
+  <form id="cfl-volunteer-tasks" class="cfl-volunteer-tasks">
+    <TaskList :tasks="tasks" v-model="selectedTaskIds" />
+    <div>
+      You selected:
+      {{ selectedTaskIds }}
+    </div>
+  </form>
 </template>
 
 <script lang="ts">
@@ -15,6 +19,7 @@ export default Vue.extend({
   },
   data () {
     return {
+      selectedTaskIds: [],
       tasks: [
         {
           taskId: '11111',

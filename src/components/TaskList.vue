@@ -8,7 +8,8 @@
             type="checkbox"
             :id="task.taskId"
             :value="task.taskId"
-            v-model="checkedTaskIds"
+            v-model="selectedTaskIds"
+            @change="$emit('change', selectedTaskIds)"
           >
           {{ task.name }}
         </label>
@@ -23,15 +24,18 @@ import { Task } from '@types'
 
 export default Vue.extend({
   name: 'TaskList',
+  model: {
+    prop: 'selectedTaskIds',
+    event: 'change'
+  },
   props: {
     tasks: {
       type: Array as PropType<Array<Task>>,
       required: true
-    }
-  },
-  data () {
-    return {
-      checkedTaskIds: []
+    },
+    selectedTaskIds: {
+      type: Array as PropType<Array<string>>,
+      required: true
     }
   }
 })
