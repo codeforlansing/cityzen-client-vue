@@ -3,15 +3,15 @@
     <legend>Volunteer Opportunities</legend>
     <ul>
       <li v-for="task in tasks" :key="task.taskId">
-        <label :for="task.taskId">
+        <label :for="taskFieldId(task)">
           <input
             type="checkbox"
-            :id="task.taskId"
+            :id="taskFieldId(task)"
             :value="task.taskId"
             v-model="selectedTaskIds"
             @change="$emit('change', selectedTaskIds)"
           >
-          {{ task.name }}
+          <span>{{ task.name }}</span>
         </label>
       </li>
     </ul>
@@ -36,6 +36,11 @@ export default Vue.extend({
     selectedTaskIds: {
       type: Array as PropType<Array<string>>,
       required: true
+    }
+  },
+  methods: {
+    taskFieldId (task: Task) {
+      return `cfl-${task.taskId}`
     }
   }
 })
