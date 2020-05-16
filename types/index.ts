@@ -6,3 +6,7 @@ export type Task = {
   description: string,
   status: Status
 }
+
+export type ContactMethod = {
+  email: string
+}
