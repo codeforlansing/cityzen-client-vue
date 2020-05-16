@@ -20,5 +20,17 @@ module.exports = {
     // https://github.com/vuejs/vue-cli/issues/2969
     config.optimization.delete('splitChunks')
     config.entryPoints.delete('app')
+  },
+  devServer: {
+    proxy: {
+      // proxy all /api requests to localhost:3000 to avoid CORS issues
+      '/api': {
+        target: `http://localhost:${process.env.PORT || 3000}`,
+        changeOrigin: true,
+        pathRewrite: {
+          '^/api': ''
+        }
+      }
+    }
   }
 }
