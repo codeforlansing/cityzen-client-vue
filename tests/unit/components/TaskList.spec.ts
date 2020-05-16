@@ -10,9 +10,8 @@ describe('TaskList.vue', () => {
       description: 'longer explanation of thing',
       status: 'todo'
     }
-    const tasks = [task]
     const wrapper = shallowMount(TaskList, {
-      propsData: { tasks }
+      propsData: { tasks: [task], value: [] }
     })
     expect(wrapper.text()).toContain(task.name)
   })

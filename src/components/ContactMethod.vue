@@ -7,6 +7,7 @@
         type="email"
         id="cfl-email"
         v-model="contactMethod.email"
+        required
       >
     </label>
   </fieldset>
@@ -36,5 +37,6 @@ label[for="cfl-email"] > span,
 label[for="cfl-email"] > input {
   display: block;
   width: 100%;
+  max-width: 16rem;
 }
 </style>
