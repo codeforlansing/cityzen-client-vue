@@ -25,8 +25,8 @@ describe('util/valid-email', () => {
     expect(validEmail('email@111.222.333.44444')).toBeFalsy()
     expect(validEmail('email@example..com')).toBeFalsy()
     expect(validEmail('Abc..123@example.com')).toBeFalsy()
-    expect(validEmail('”(),:;<>[\]@example.com')).toBeFalsy()
-    expect(validEmail('this\ is"really"not\allowed@example.com')).toBeFalsy()
+    expect(validEmail('”(),:;<>[]@example.com')).toBeFalsy()
+    expect(validEmail('this is"really"notallowed@example.com')).toBeFalsy()
   })
 
   it('accepts basic email addresses', () => {
