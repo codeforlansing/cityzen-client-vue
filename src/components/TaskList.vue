@@ -25,7 +25,7 @@ import { Task } from '@types'
 export default Vue.extend({
   name: 'TaskList',
   model: {
-    prop: 'selectedTaskIds',
+    prop: 'value',
     event: 'change'
   },
   props: {
@@ -33,9 +33,14 @@ export default Vue.extend({
       type: Array as PropType<Array<Task>>,
       required: true
     },
-    selectedTaskIds: {
+    value: {
       type: Array as PropType<Array<string>>,
       required: true
+    }
+  },
+  data () {
+    return {
+      selectedTaskIds: this.value
     }
   },
   methods: {
@@ -50,6 +55,8 @@ export default Vue.extend({
 .cfl-task-list > ul {
   columns: 12rem 3;
   list-style: none;
+  margin-block-start: 0;
+  margin-block-end: 0;
   padding-inline-start: 0;
 }
 
