@@ -1,0 +1,93 @@
+.cfl-volunteer-tasks {
+  font-family: "Open Sans", Helvetica, Arial;
+  font-size: 12px;
+  font-weight: 400;
+  color: #888;
+  margin: 2rem 2rem 0;
+}
+
+.cfl-volunteer-tasks::before {
+  display: block;
+  content: 'Volunteer Opportunities';
+  color: #202020;
+  text-transform: uppercase;
+  font-size: 28px;
+  margin-bottom: 1rem;
+}
+
+.cfl-volunteer-tasks fieldset {
+  border: none;
+  padding: 0;
+  margin: 0 0 1rem;
+}
+
+.cfl-volunteer-tasks legend {
+  display: none;
+}
+
+.cfl-volunteer-tasks .cfl-task-list > ul {
+  column-gap: 4rem;
+  column-rule: 1px solid #E0E0E0;
+}
+
+.cfl-volunteer-tasks label[for="cfl-email"] {
+  display: block;
+}
+
+.cfl-volunteer-tasks label[for="cfl-email"] > span {
+  margin-bottom: 0.25rem;
+  font-weight: bold;
+}
+
+.cfl-volunteer-tasks label[for="cfl-email"] > span::after {
+  content: ' (required)';
+}
+
+.cfl-volunteer-tasks fieldset li {
+  margin-bottom: 0.5rem;
+}
+
+.cfl-volunteer-tasks fieldset li span {
+  line-height: 1.2;
+}
+
+.cfl-volunteer-tasks fieldset li input[type="checkbox"] {
+  margin-right: 0.5rem;
+}
+
+.cfl-volunteer-tasks input:not([type="checkbox"]) {
+  background: white;
+  border: 1px solid #E0E0E0;
+  padding: 10px 20px;
+  font-family: "Open Sans", Helvetica, Arial;
+  font-size: 12px;
+  font-weight: 400;
+  color: #888;
+  max-width: initial;
+  box-sizing: border-box;
+}
+
+.cfl-volunteer-tasks button {
+  color: #fff;
+  background: #f33f3f;
+  padding: 8px 30px;
+  text-align: center;
+  border: none;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  line-height: normal;
+  font-size: 100%;
+  margin: 0;
+  box-sizing: border-box;
+  vertical-align: baseline;
+  outline: none;
+}
+
+.cfl-volunteer-tasks button:hover {
+  background: #333;
+}
+
+.cfl-volunteer-tasks output.error {
+  color: #f33f3f;
+  margin-bottom: 0.25rem;
+}
