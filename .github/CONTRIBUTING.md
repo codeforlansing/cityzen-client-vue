@@ -1,10 +1,10 @@
-# Code for Lansing Contributing Guide
+# Cityzen Vue Client Contributing Guide
 
 Hi! We're really excited that you are interested in contributing to our tech
 community tools. Before submitting your contribution, please make sure to read
 through these guidelines.
 
-- [Code of Conduct](https://github.com/codeforlansing/project-template/blob/master/.github/CODE_OF_CONDUCT.md)
+- [Code of Conduct](https://github.com/codeforlansing/cityzen-client-vue/blob/master/.github/CODE_OF_CONDUCT.md)
 - [Issue Reporting Guidelines](#issue-reporting-guidelines)
 - [Pull Request Guidelines](#pull-request-guidelines)
 - [Development Setup](#development-setup)
@@ -69,6 +69,11 @@ here's a quick list of the tools you'll need to run this project:
   [nvm](https://github.com/nvm-sh/nvm) is recommended for non-Windows users
 - [Visual Studio Code](https://code.visualstudio.com/)
 
+This project also uses the `cityzen-server`. In order to run this project,
+we also recommend that you follow the
+[Cityzen Server Contributing Guide](https://github.com/codeforlansing/cityzen-server/blob/master/.github/CONTRIBUTING.md)
+and run the server.
+
 ### Getting the source code
 
 If you want to modify a project and you are not a member of the Code for Lansing
@@ -78,14 +83,16 @@ from us, and make it easier to send us helpful improvements that you've made.
 
 To get the code from GitHub, you will need to install
 [`git`](https://git-scm.com/downloads) on your computer and then use `git clone`
-to download the project to your computer.
+to download the project to your computer.  If you are new to git, you might look at:
+  - Jessica Lord's [git-it](https://github.com/jlord/git-it-electron) gamified learning application
+  - Coursera's video course [Introduction to git and github](https://www.coursera.org/learn/introduction-git-github)
+  - Flatiron School's blog post [intro to git](https://flatironschool.com/blog/an-introduction-to-git)
 
 The full `git clone` command will vary depending on the name of the GitHub
-project in which you are working. Replace `project-template` in the following
-command with the correct name of the project you wish to change:
+project in which you are working. For the `cityzen-client-vue` project the full command is as follows:
 
 ``` sh
-git clone https://github.com/codeforlansing/project-template.git
+git clone https://github.com/codeforlansing/cityzen-client-vue.git
 ```
 
 If you forked this repository, the command will be different. Go to the page
@@ -153,8 +160,51 @@ experience of looking at and editing this project _super nice_.
 - _npm_ by egamma
 - _npm Intellisense_ by Christian Kohler
 - _VSCode Essentials Snippets_ by Roberto Achar
+- _Jest_ by Orta
+- _ESLint_ by Dirk Baeumer
 
 Restart VS Code after installing all of these extensions.
+
+### Build targets
+
+All of the build targets for this project are `npm` scripts. You can find them
+in `package.json`. To run a script, use the following command, substituting
+`SCRIPT_NAME` with the name of the script you wish to run:
+
+``` sh
+npm run SCRIPT_NAME
+```
+
+Below is a summary of scripts that you can use.
+
+#### `serve`
+
+Use `npm run serve` to start a development server with hot reload.
+
+Any changes you make will be automatically refreshed in the web browser and
+the Vue development mode is enabled, making it easy to use the Vue Devtools
+browser extension while making changes to the project.
+
+#### `build`
+
+Use `npm run build` to produce the production artifiacts. The generated files
+will be placed in the `dist` directory.
+
+#### `test` and `test:watch`
+
+Use `npm run test` to run all of the unit tests for this project one time and
+exit.
+
+If you are making changes to tests and want them to run whenever you save your
+changes, use `npm run test:watch`. Press `Ctrl`+`C` to stop the script when you
+are done with your work.
+
+#### `lint`
+
+Use `npm run lint` to run ESLint and verify the code meets our code quality
+expectations.
+
+This command will also run automatically every time you run `git commit`.
 
 ### Making changes
 
