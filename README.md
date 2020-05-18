@@ -1,12 +1,7 @@
-# Code for Lansing Project Template
+# Cityzen Vue Client
 
-This project is intended to be used as a template for creating new Code for
-Lansing projects on GitHub.
-
-Click the "Use this template" button to start a new Code for Lansing project.
-
-Once you've started a new project, please review all of the files that are
-created and change them to fit the requirements of that particular project.
+This project is the frontend component for the Cityzen volunteer sign-up
+project.
 
 ## Questions
 
@@ -25,8 +20,8 @@ project is exclusively for bug reports and feature requests.
 You are welcome and encouraged to make changes to this website by submitting
 pull requests or forking our code to make your own community website!
 
-Before you get ahead of yourself, though, please read our
-[Contributing Guide](https://github.com/codeforlansing/project-template/blob/master/.github/CONTRIBUTING.md).
+Before you get ahead of yourself though, please read our
+[Contributing Guide](https://github.com/codeforlansing/cityzen-client-vue/blob/master/.github/CONTRIBUTING.md).
 
 ## License
 
