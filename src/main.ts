@@ -13,9 +13,7 @@ if (!mountElement) {
   new Vue({
     render (createElement) {
       return createElement(App, {
-        props: {
-          tasksHref: mountElement.dataset.tasksHref
-        }
+        props: mountElement.dataset
       })
     }
   }).$mount(mountElement)

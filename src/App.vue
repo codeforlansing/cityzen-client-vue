@@ -45,7 +45,11 @@ export default Vue.extend({
   props: {
     tasksHref: {
       type: String,
-      required: true
+      default: '/api/tasks'
+    },
+    volunteerHref: {
+      type: String,
+      default: '/api/users/:id/tasks/claim'
     }
   },
   beforeMount () {
@@ -67,7 +71,14 @@ export default Vue.extend({
       this.selectedTaskIds.splice(0)
       this.contactMethod.email = ''
     },
-    submit () {
+    validate () {
+      if (!validEmail(this.contactMethod.email)) {
+        this.message = 'Please enter a valid email address.'
+        return false
+      }
+      return true
+    },
+    async submit () {
       this.message = ''
       this.formState = FormState.SUBMITTING
 
@@ -76,24 +87,32 @@ export default Vue.extend({
       }
 
       if (this.formState !== FormState.ERROR) {
-        setTimeout(() => {
-          if (Math.random() < 0.5) {
-            this.message = 'An error occurred while submitting the form.'
-            this.formState = FormState.ERROR
-          } else {
-            this.reset()
-            this.message = 'Thank you for volunteering! We\'ll contact you soon.'
-            this.formState = FormState.SUCCESS
+        try {
+          const contactId = encodeURIComponent(this.contactMethod.email)
+          const volunteerUrl = this.volunteerHref.replace(':id', contactId)
+          const response = await fetch(volunteerUrl, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ tasks: this.selectedTaskIds })
+          })
+          const responseJson = await response.json()
+          if (!response.ok) {
+            throw new Error(
+              `Server returned an error: ${JSON.stringify(responseJson)}`
+            )
           }
-        }, 2000)
+
+          this.reset()
+          this.message = 'Thank you for volunteering! We\'ll contact you soon.'
+          this.formState = FormState.SUCCESS
+        } catch (error) {
+          this.message = 'An error occurred while submitting the form.'
+          this.formState = FormState.ERROR
+          console.error(this.message, error)
+        }
       }
-    },
-    validate () {
-      if (!validEmail(this.contactMethod.email)) {
-        this.message = 'Please enter a valid email address.'
-        return false
-      }
-      return true
     },
     async loadTasks () {
       try {
@@ -104,6 +123,7 @@ export default Vue.extend({
             `Server returned an error: ${JSON.stringify(responseJson)}`
           )
         }
+
         this.tasks = responseJson
       } catch (error) {
         this.tasksError =
