@@ -1,7 +1,12 @@
 <template>
   <form id="cfl-volunteer-tasks" class="cfl-volunteer-tasks">
-    <TaskList :tasks="tasks" v-model="selectedTaskIds" />
+    <output v-if="tasksError" class="error">
+      {{ tasksError }}
+    </output>
+    <TaskList v-else :tasks="tasks" v-model="selectedTaskIds" />
+
     <ContactMethod v-model="contactMethod" />
+
     <div>
       <output
         v-if="message"
@@ -37,6 +42,12 @@ export default Vue.extend({
   components: {
     TaskList, ContactMethod
   },
+  props: {
+    tasksHref: {
+      type: String,
+      required: true
+    }
+  },
   beforeMount () {
     this.loadTasks()
   },
@@ -47,7 +58,8 @@ export default Vue.extend({
       message: '',
       contactMethod: { email: '' },
       selectedTaskIds: [],
-      tasks: []
+      tasks: [],
+      tasksError: ''
     }
   },
   methods: {
@@ -84,8 +96,20 @@ export default Vue.extend({
       return true
     },
     async loadTasks () {
-      const response = await fetch('/api/tasks')
-      this.tasks = await response.json()
+      try {
+        const response = await fetch(this.tasksHref)
+        const responseJson = await response.json()
+        if (!response.ok) {
+          throw new Error(
+            `Server returned an error: ${JSON.stringify(responseJson)}`
+          )
+        }
+        this.tasks = responseJson
+      } catch (error) {
+        this.tasksError =
+          'The tasks couldn\'t be loaded. Please try again later.'
+        console.error(this.tasksError, error)
+      }
     }
   }
 })
@@ -95,5 +119,6 @@ export default Vue.extend({
 .cfl-volunteer-tasks output.error {
   display: block;
   color: red;
+  margin-bottom: 0.5rem;
 }
 </style>
