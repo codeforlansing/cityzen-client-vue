@@ -13,11 +13,8 @@
   </fieldset>
 </template>
 
-<script lang="ts">
-import Vue, { PropType } from 'vue'
-import { ContactMethod } from '@types'
-
-export default Vue.extend({
+<script>
+export default {
   name: 'ContactMethod',
   model: {
     prop: 'contactMethod',
@@ -25,11 +22,11 @@ export default Vue.extend({
   },
   props: {
     contactMethod: {
-      type: Object as PropType<ContactMethod>,
+      type: Object,
       required: true
     }
   }
-})
+}
 </script>
 
 <style>

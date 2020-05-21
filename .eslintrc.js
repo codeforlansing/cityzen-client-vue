@@ -5,10 +5,10 @@ module.exports = {
   },
   extends: [
     'plugin:vue/essential',
-    '@vue/standard',
-    '@vue/typescript/recommended'
+    '@vue/standard'
   ],
   parserOptions: {
+    parser: 'babel-eslint',
     ecmaVersion: 2020
   },
   rules: {

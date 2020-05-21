@@ -1,4 +1,4 @@
-import validEmail from '@/util/valid-email'
+import validEmail from '../../../src/util/valid-email'
 
 describe('util/valid-email', () => {
   it('rejects blank email addresses', () => {

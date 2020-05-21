@@ -22,11 +22,8 @@
   </fieldset>
 </template>
 
-<script lang="ts">
-import Vue, { PropType } from 'vue'
-import { Task } from '@types'
-
-export default Vue.extend({
+<script>
+export default {
   name: 'TaskList',
   model: {
     prop: 'value',
@@ -34,11 +31,11 @@ export default Vue.extend({
   },
   props: {
     tasks: {
-      type: Array as PropType<Array<Task>>,
+      type: Array,
       required: true
     },
     value: {
-      type: Array as PropType<Array<string>>,
+      type: Array,
       required: true
     }
   },
@@ -48,11 +45,11 @@ export default Vue.extend({
     }
   },
   methods: {
-    taskFieldId (task: Task) {
+    taskFieldId (task) {
       return `cfl-${task.taskId}`
     }
   }
-})
+}
 </script>
 
 <style>
