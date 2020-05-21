@@ -29,6 +29,8 @@ import Vue from 'vue'
 import TaskList from './components/TaskList.vue'
 import ContactMethod from './components/ContactMethod.vue'
 import validEmail from '@/util/valid-email'
+import requestJson from '@/util/http/request-json'
+import postJson from '@/util/http/post-json'
 
 enum FormState {
   INITIAL,
@@ -90,19 +92,7 @@ export default Vue.extend({
         try {
           const contactId = encodeURIComponent(this.contactMethod.email)
           const volunteerUrl = this.volunteerHref.replace(':id', contactId)
-          const response = await fetch(volunteerUrl, {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({ tasks: this.selectedTaskIds })
-          })
-          const responseJson = await response.json()
-          if (!response.ok) {
-            throw new Error(
-              `Server returned an error: ${JSON.stringify(responseJson)}`
-            )
-          }
+          await postJson(volunteerUrl, { tasks: this.selectedTaskIds })
 
           this.reset()
           this.message = 'Thank you for volunteering! We\'ll contact you soon.'
@@ -116,15 +106,7 @@ export default Vue.extend({
     },
     async loadTasks () {
       try {
-        const response = await fetch(this.tasksHref)
-        const responseJson = await response.json()
-        if (!response.ok) {
-          throw new Error(
-            `Server returned an error: ${JSON.stringify(responseJson)}`
-          )
-        }
-
-        this.tasks = responseJson
+        this.tasks = await requestJson(this.tasksHref)
       } catch (error) {
         this.tasksError =
           'The tasks couldn\'t be loaded. Please try again later.'
