@@ -25,21 +25,20 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue'
 import TaskList from './components/TaskList.vue'
 import ContactMethod from './components/ContactMethod.vue'
-import validEmail from '@/util/valid-email'
-import requestJson from '@/util/http/request-json'
-import postJson from '@/util/http/post-json'
+import validEmail from './util/valid-email'
+import requestJson from './util/http/request-json'
+import postJson from './util/http/post-json'
 
-enum FormState {
-  INITIAL,
-  SUBMITTING,
-  SUCCESS,
-  ERROR
+const FormState = {
+  INITIAL: 0,
+  SUBMITTING: 1,
+  SUCCESS: 2,
+  ERROR: 3
 }
 
-export default Vue.extend({
+export default {
   name: 'App',
   components: {
     TaskList, ContactMethod
@@ -114,7 +113,7 @@ export default Vue.extend({
       }
     }
   }
-})
+}
 </script>
 
 <style>

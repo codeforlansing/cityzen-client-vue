@@ -6,7 +6,7 @@ module.exports = {
   configureWebpack: {
     // Name the bundle 'volunteer-tasks' (dist/js/volunteer-tasks.js)
     entry: {
-      'volunteer-tasks': './src/main.ts'
+      'volunteer-tasks': './src/main.js'
     },
     plugins: [
       // Do not split the bundle up into chunks (generate 1 file)

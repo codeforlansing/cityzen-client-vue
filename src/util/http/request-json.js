@@ -1,4 +1,4 @@
-export default async (url: string, params?: object) => {
+export default async (url, params) => {
   const response = await fetch(url, params)
   const responseBody = await response.text()
   if (!response.ok) {

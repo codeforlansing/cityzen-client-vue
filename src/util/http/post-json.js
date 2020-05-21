@@ -1,6 +1,6 @@
 import requestJson from './request-json'
 
-export default async (url: string, body?: object) => {
+export default async (url, body) => {
   const params = {
     method: 'POST',
     headers: {
