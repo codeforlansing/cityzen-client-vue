@@ -3,15 +3,14 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "serve": "(npx cityzen-server || (sleep 10 && echo -e \"\\e[41mrun npm install codeforlansing/cityzen-server to enable autolaunching the backend\\e[0m\")) & vue-cli-service serve",
+    "serve": "(npm run cityzen-server || (sleep 10 && echo -e \"\\e[41mrun npm install -g codeforlansing/cityzen-server to enable autolaunching the backend\\e[0m\")) & vue-cli-service serve",
     "build": "vue-cli-service build",
     "test": "vue-cli-service test:unit",
     "test:watch": "vue-cli-service test:unit --watch",
     "lint": "vue-cli-service lint",
-    "cityzen-server": "npx cityzen-server"
+    "cityzen-server": "node ./bin/launch-cityzen-server.js"
   },
   "dependencies": {
-    "cityzen-server": "github:codeforlansing/cityzen-server#058335b2a2371fd6167f5c8fb7e15e37198efe7a",
     "core-js": "^3.6.4",
     "vue": "^2.6.11"
   },
@@ -23,6 +22,7 @@
     "@vue/eslint-config-standard": "^5.1.2",
     "@vue/test-utils": "1.0.0-beta.31",
     "babel-eslint": "^10.1.0",
+    "dotenv": "^8.2.0",
     "eslint": "^6.7.2",
     "eslint-plugin-import": "^2.20.2",
     "eslint-plugin-node": "^11.1.0",
@@ -37,6 +37,5 @@
     "hooks": {
       "pre-commit": "npm run lint"
     }
-  },
-  "optionalDependencies": {}
+  }
 }
