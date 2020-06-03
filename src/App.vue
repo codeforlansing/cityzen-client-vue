@@ -18,6 +18,8 @@
       <button
         v-if="formState !== FormState.SUCCESS"
         :disabled="formState === FormState.SUBMITTING"
+        :class="{ 'cfl-task-selected': isAnyTaskSelected }"
+        class="cfl-volunteer-button"
         @click="submit"
       >Submit</button>
     </div>
@@ -65,6 +67,11 @@ export default {
       selectedTaskIds: [],
       tasks: [],
       tasksError: ''
+    }
+  },
+  computed: {
+    isAnyTaskSelected () {
+      return this.selectedTaskIds.length > 0
     }
   },
   methods: {
