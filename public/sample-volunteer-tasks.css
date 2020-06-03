@@ -87,6 +87,13 @@
   background: #333;
 }
 
+/* Disable button when no tasks are selected */
+.cfl-volunteer-tasks .cfl-volunteer-button:not(.cfl-task-selected) {
+  pointer-events: none;
+  cursor: not-allowed;
+  opacity: 0.65;
+}
+
 .cfl-volunteer-tasks output.error {
   color: #f33f3f;
   margin-bottom: 0.25rem;
