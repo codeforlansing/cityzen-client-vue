@@ -1,9 +1,8 @@
 <template>
   <fieldset class="cfl-task-list">
-    <legend>Volunteer Opportunities</legend>
+    <legend>{{ $t('taskListHeading') }}</legend>
     <p v-if="!tasks.length" class="cfl-no-tasks-info">
-      We don't have any specific opportunities to show you right now, but if
-      you submit your contact information we'll find a way you can help!
+      {{ $t('noTasksAvailable') }}
     </p>
     <ul v-else>
       <li v-for="task in tasks" :key="task.taskId">

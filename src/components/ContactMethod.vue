@@ -1,8 +1,8 @@
 <template>
   <fieldset class="cfl-contact-method">
-    <legend>Contact Method</legend>
+    <legend>{{ $t('contactMethodHeading') }}</legend>
     <label for="cfl-email">
-      <span>Email address</span>
+      <span>{{ $t('emailInputLabel') }}</span>
       <input
         type="email"
         id="cfl-email"

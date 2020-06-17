@@ -6,15 +6,6 @@
   margin: 2rem 2rem 0;
 }
 
-.cfl-volunteer-tasks::before {
-  display: block;
-  content: 'Volunteer Opportunities';
-  color: #202020;
-  text-transform: uppercase;
-  font-size: 28px;
-  margin-bottom: 1rem;
-}
-
 .cfl-volunteer-tasks fieldset {
   border: none;
   padding: 0;
@@ -22,7 +13,10 @@
 }
 
 .cfl-volunteer-tasks legend {
-  display: none;
+  color: #202020;
+  text-transform: uppercase;
+  font-size: 28px;
+  margin-bottom: 1rem;
 }
 
 .cfl-volunteer-tasks .cfl-task-list > ul {
@@ -37,10 +31,6 @@
 .cfl-volunteer-tasks label[for="cfl-email"] > span {
   margin-bottom: 0.25rem;
   font-weight: bold;
-}
-
-.cfl-volunteer-tasks label[for="cfl-email"] > span::after {
-  content: ' (required)';
 }
 
 .cfl-volunteer-tasks fieldset li {
