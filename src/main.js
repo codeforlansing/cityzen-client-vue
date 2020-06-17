@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import App from './App.vue'
+import i18n from './plugins/i18n'
 
 Vue.config.productionTip = false
 
@@ -11,6 +12,7 @@ if (!mountElement) {
   )
 } else {
   new Vue({
+    i18n,
     render (createElement) {
       return createElement(App, {
         props: mountElement.dataset

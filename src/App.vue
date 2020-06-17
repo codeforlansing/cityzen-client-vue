@@ -21,7 +21,7 @@
         :class="{ 'cfl-task-selected': isAnyTaskSelected }"
         class="cfl-volunteer-button"
         @click="submit"
-      >Submit</button>
+      >{{ $t('submitButtonLabel') }}</button>
     </div>
   </form>
 </template>
@@ -81,7 +81,7 @@ export default {
     },
     validate () {
       if (!validEmail(this.contactMethod.email)) {
-        this.message = 'Please enter a valid email address.'
+        this.message = this.$t('enterValidEmail')
         return false
       }
       return true
@@ -101,10 +101,10 @@ export default {
           await postJson(volunteerUrl, { tasks: this.selectedTaskIds })
 
           this.reset()
-          this.message = 'Thank you for volunteering! We\'ll contact you soon.'
+          this.message = this.$t('submitSuccess')
           this.formState = FormState.SUCCESS
         } catch (error) {
-          this.message = 'An error occurred while submitting the form.'
+          this.message = this.$t('submitError')
           this.formState = FormState.ERROR
           console.error(this.message, error)
         }
@@ -114,8 +114,7 @@ export default {
       try {
         this.tasks = await requestJson(this.tasksHref)
       } catch (error) {
-        this.tasksError =
-          'The tasks couldn\'t be loaded. Please try again later.'
+        this.tasksError = this.$t('taskLoadError')
         console.error(this.tasksError, error)
       }
     }

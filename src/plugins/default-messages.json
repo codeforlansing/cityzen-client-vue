@@ -1,0 +1,13 @@
+{
+  "en": {
+    "contactMethodHeading": "Contact Method",
+    "emailInputLabel": "Email address (required)",
+    "enterValidEmail": "Please enter a valid email address.",
+    "noTasksAvailable": "We don't have any specific opportunities to show you right now, but if you submit your contact information we'll find a way you can help!",
+    "submitButtonLabel": "Submit",
+    "submitError": "An error occurred while submitting the form.",
+    "submitSuccess": "Thank you for volunteering! We'll contact you soon.",
+    "taskListHeading": "Volunteer Opportunities",
+    "taskLoadError": "The tasks couldn't be loaded. Please try again later."
+  }
+}
