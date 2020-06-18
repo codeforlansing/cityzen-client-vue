@@ -8,6 +8,7 @@ through these guidelines.
 - [Issue Reporting Guidelines](#issue-reporting-guidelines)
 - [Pull Request Guidelines](#pull-request-guidelines)
 - [Development Setup](#development-setup)
+- [Usage and Customization](#usage-and-customization
 
 ## Issue Reporting Guidelines
 
@@ -177,6 +178,28 @@ npm run SCRIPT_NAME
 
 Below is a summary of scripts that you can use.
 
+#### `cityzen-server`
+
+This script will use `bin/launch-cityzen-server.js` to run a development version
+of the [`cityzen-server`](https://github.com/codeforlansing/cityzen-server)
+project using `npx`.
+
+This script can be configured using the following environment variables:
+
+- `CITYZEN_SERVER_AUTOLAUNCH_BRANCH` - The GitHub branch to checkout and use
+  when running the server. _Default: `master`_
+- `CITYZEN_SERVER_AUTOLAUNCH_URL` - The location where `npx` will look for,
+  download, and use the `cityzen-server` project. _Default:
+  `git://github.com/codeforlansing/cityzen-server.git#${CITYZEN_SERVER_AUTOLAUNCH_BRANCH}`_
+- `CITYZEN_SERVER_USE_CACHED` - Set to `false` to tell `npx` to ignore any
+  cached version of `cityzen-server` that it finds, or to any other value to
+  use the cached version. _Default: `true`_
+
+#### `start`
+
+Runs the `cityzen-server` and `serve` scripts simultaneously to make it easier
+to test the client with a running development API.
+
 #### `serve`
 
 Use `npm run serve` to start a development server with hot reload.
@@ -241,3 +264,130 @@ as soon as we can or you can contact a leader if you think your change may not
 have been noticed.
 
 We hope you enjoy working with our code!
+
+## Usage and Customization
+
+The client component is designed in such a way that the built artifact,
+`js/volunteer-tasks.js`, can be uploaded to a CDN and used by any number of
+organizations simultaneously instead of building a different artifact per
+organization.
+
+The component is also built to allow each organization using it to customize
+the appearance, text shown within the component, and URLs where tasks are
+fetched and submitted.
+
+The file [public/index.html](../public/index.html) shows a complete working
+example of how an organization can tailor the component to their website and
+branding by using custom CSS, JSON text labels, and `data-` attributes on the
+component itself.
+
+Below is a brief explanation of each point of configuration.
+
+### Component placement
+
+To use the component on a page, a minimum of three HTML elements are needed:
+
+1. The component's default styles
+2. A placeholder HTML element for the component
+3. The script to enable the component
+
+#### 1. Default styles
+
+To add the component's default styles to a page, add a `link` element right
+above the `</head>` tag on the page where the component will appear.
+
+``` html
+<link href="/css/volunteer-tasks.css" rel="stylesheet">
+```
+
+#### 2. Component placeholder
+
+To place the component at a specific location on a website, put an empty HTML
+element with the `id="cfl-volunteer-tasks"` attribute at the appropriate place
+in the `body` element of the page:
+
+``` html
+<div id="cfl-volunteer-tasks"></div>
+```
+
+#### 3. Component script
+
+To activate the component, add a `style` element right above the `</body>` tag
+on the page where the component will appear.
+
+``` html
+<script src="/js/volunteer-tasks.js"></script>
+```
+
+### Appearance
+
+This component is built using as many semantic HTML elements as possible, all
+nested within a single `div id="cfl-volunteer-tasks"` element.
+
+This allows the component to inherit as many styles from the organization's
+website as possible while also allowing organizations to apply additional CSS
+to customize the component's appearance even further.
+
+See [public/sample-volunteer-tasks.css](../public/sample-volunteer-tasks.css)
+for an example of how to completely customize the appearance of the component.
+
+When providing custom CSS to style the component, make sure that the custom
+CSS is loaded _before_ the `volunteer-tasks.css` file introduced in Step 1
+of Component Placement.
+
+### Labels and Messages
+
+The component uses a variety of default labels and messages that may be
+overridden by an organization.
+
+To provide one or more custom messages, add a `script` element with an
+`id="cfl-cityzen-messages"` attribute to the `head` of the HTML page where the
+component will be shown. Within the `script` element, provide the new values
+of the labels and messages in the formation shown below:
+
+``` html
+<script id="cfl-cityzen-messages" type="application/json">
+  {
+    "en": {
+      "submitButtonLabel": "Volunteer"
+    }
+  }
+</script>
+```
+
+In the example above, the `submitButtonLabel` is given the value `Volunteer`,
+which will make the submit button on the component show the word "Volunteer"
+instead of the default "Submit".
+
+For a complete list of labels and messages that may be customized, refer to
+[src/plugins/default-messages.json](../src/plugins/default-messages.json).
+
+### Data URLs
+
+The locations where the component retrieves a list of volunteer tasks and
+submits volunteer requests can be customized per organization.
+
+To tell the component where to retrieve tasks, add a `data-tasks-href` attribute
+to the component's placeholder element and set the value to the URL or path
+where the information can be retrieved.
+
+To tell the component where to submit volunteer requests, add a
+`data-volunteer-href` attribute to the component's placeholder element and set
+the value to the URL or path where the component's form information should be
+sent. If the value `:id` is present in the value of this attribute, it will be
+replaced with the contact method (email) of the volunteer.
+
+Here is an example that sets both attributes:
+
+``` html
+<div
+  id="cfl-volunteer-tasks"
+  data-tasks-href="/api/tasks"
+  data-volunteer-href="/api/users/:id/tasks/claim"
+></div>
+```
+
+In this example, paths are provided, which means that the component will get and
+send data using the web browser's current address and replace the path with
+the appropriate value depending on whether tasks are being retrieved or a
+volunteer is signing up.
