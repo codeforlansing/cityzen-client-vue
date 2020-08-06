@@ -1,3 +1,7 @@
+[![build](https://github.com/codeforlansing/cityzen-client-vue/workflows/build/badge.svg)](https://github.com/codeforlansing/cityzen-client-vue/actions?query=workflow%3Abuild)
+[![version](https://img.shields.io/npm/v/@codeforlansing/cityzen-client-vue.svg?sanitize=true)](https://www.npmjs.com/package/@codeforlansing/cityzen-client-vue)
+[![license](https://img.shields.io/npm/l/@codeforlansing/cityzen-client-vue.svg?sanitize=true)](https://github.com/codeforlansing/cityzen-client-vue/blob/master/LICENSE)
+
 # Cityzen Vue Client
 
 This project is the frontend component for the Cityzen volunteer sign-up
