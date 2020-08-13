@@ -19,7 +19,7 @@ jobs:
     # Creates a new release only when a new tag was just created
     - uses: actions/create-release@v1
       id: autorelease
-      if: ${{ steps.autotag.outputs.tagcreated }} = "yes"
+      if: ${{ steps.autotag.outputs.tagcreated }} != ""
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
