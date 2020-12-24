@@ -18,7 +18,7 @@ First you want to setup the CityZen Server and also create a Trello account. For
 
 Once you have the server running and linked to Trello you can install the client on your web server. The client will install to port 8080\. There are two ways to install the client:
 
-First way is to simply download the client and associated files. Two files are required: <a href="https://raw.githubusercontent.com/codeforlansing/cityzen-docs/master/client-sample/client.html" download>client.html</a> and <a href="https://raw.githubusercontent.com/codeforlansing/cityzen-docs/master/client-sample/sample-volunteer-tasks.css" download>sample-volunteer-tasks.css</a>.
+First way is to simply download the client and associated files. Two files are required: <a href="https://raw.githubusercontent.com/codeforlansing/cityzen-docs/master/client-sample/client.html" target="_blank">client.html</a> and <a href="https://raw.githubusercontent.com/codeforlansing/cityzen-docs/master/client-sample/sample-volunteer-tasks.css" target="_blank">sample-volunteer-tasks.css</a>.
 
 Second way is to build the web page yourself and be sure to link to three CDN files in your pages head statement:
 
